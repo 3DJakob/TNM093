@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Copyright 2013, 2017, Karljohan Lundin Palmerius
+
+This is a stubb for laborations on multi-modal display
+systems in the VR laboratory. It will disable the X3D
+navigation to allow for viewpoint calibration and tracking,
+and load libraries commonly used in the VR laboratory.
+
+-->
+<Group DEF="CHAIR">
+
+  <PythonScript url="urn:candy:python/CorrectViewpoint.py"/>
+
+  <PythonScript url="urn:candy:python/AutoLoadSO.py"/>
+  <PythonScript url="./ColorRandomizer.py"/>
+
+  <!-- dynamic.x3d -->
+
+  <!-- Put your code here
+  <SMViewpoint position="0 2 4" >
+  </SMViewpoint>
+-->
+  <Transform translation="0 0.1 0">
+    <Shape  DEF="CHAIR_BOTTOM" >
+      <Box size="0.1 0.01 0.1"/>
+      <Appearance>
+        <Material DEF="MyMaterial" diffuseColor="1 0 0"/>
+        <SmoothSurface stiffness="0.4"/>
+        <!-- <Material diffuseColor="1.0 0.0 0.0" DEF="SURFACE"/> -->
+        <!-- <SmoothSurface diffuseColor="1 0 0" DEF="SURFACE"/> -->
+      </Appearance>
+    </Shape>
+  </Transform>
+
+  <!--Leg 1 -->
+  <Transform translation="0.05 0.05 0">
+    <Shape DEF='LEG'>
+      <Cylinder  radius="0.005" height="0.1"/>
+      <Appearance>
+        <Material diffuseColor="1.0 0.0 0.0"/>
+      </Appearance>
+    </Shape>
+  </Transform>
+
+  <!--Leg 2 -->
+  <Transform translation="-0.05 0.05 0">
+    <Shape USE='LEG'>
+    </Shape>
+  </Transform>
+
+  <!--Leg 3 -->
+  <Transform translation="0.05 0.05 -0.05">
+    <Shape USE='LEG'>
+    </Shape>
+  </Transform>
+
+  <!--Leg 4 -->
+  <Transform translation="-0.05 0.05 -0.05">
+    <Shape USE='LEG'>
+    </Shape>
+  </Transform>
+
+  <!-- <SpaceWareSensor DEF="MOUSE"/> -->
+
+  <!-- <Route fromNode="CHAIR_BOTTOM" fromField="isTouched"
+toNode="SURFACE" toField="diffuseColor"/> -->
+
+  <PythonScript DEF="PS" url="ColorRandomizer.py" />
+
+  <ROUTE fromNode="CHAIR_BOTTOM" fromField="isTouched"
+         toNode="PS" toField="SFBool" />
+  <ROUTE fromNode="PS" fromField="SFColor"
+         toNode="MyMaterial" toField="diffuseColor" />
+
+
+</Group>
