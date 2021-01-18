@@ -26,8 +26,8 @@ and load libraries commonly used in the VR laboratory.
 
 
   <!-- Put your code here -->
-  <!-- H��ger Upp��t Bak��t -->
-  <SMViewpoint position="0 0 0.5" >
+  <!-- H��ger Upp��t Bak��t, negativ höger ger vänster-->
+  <SMViewpoint position="0 0 0.6" >
   </SMViewpoint>
 
   <TimeTrigger DEF='TT' />
@@ -69,9 +69,8 @@ and load libraries commonly used in the VR laboratory.
         <Box DEF="CHAIR_BOTTOM" size="0.1 0.01 0.1"/>
         <Appearance shadow="TRUE">
             <Material DEF="MyMaterial" diffuseColor="1 0 0" shadow="TRUE"/>
-
-            <SmoothSurface DEF="SS" stiffness="0.4"/>
-            <!-- FricitionalSurface? -->
+			<FrictionalSurface useRelativeValues = "false" stiffness = "1200" staticFriction ="0.7" dynamicFriction = "0.5"/>
+			
             <!-- <Material diffuseColor="1.0 0.0 0.0" DEF="SURFACE"/> -->
             <!-- <SmoothSurface diffuseColor="1 0 0" DEF="SURFACE"/> -->
         </Appearance>
@@ -135,8 +134,8 @@ toNode="SURFACE" toField="diffuseColor"/> -->
 
   <PythonScript DEF="PS" url="ColorRandomizer.py" />
 
-  <PythonScript url="/opt/liu/h3dapi/2020.08.28-h3dcandy/share/H3D/Candy/python/MFtoSFBool.py" DEF="MFtoSFBool" />
-  <PythonScript url="/opt/liu/h3dapi/2020.08.28-h3dcandy/share/H3D/Candy/python/MFtoSFBool.py" DEF="MFtoSFBool2" />
+  <PythonScript url="urn:candy:python/MFtoSFBool.py" DEF="MFtoSFBool" />
+  <PythonScript url="urn:candy:python/MFtoSFBool.py" DEF="MFtoSFBool2" />
 
   <ROUTE fromNode="CHAIR_BOTTOM" fromField="isTouched"
          toNode="MFtoSFBool" toField="value" />
