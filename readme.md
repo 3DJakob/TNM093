@@ -1,6 +1,6 @@
 # TNM093 VR-Lab
 
-A react component to make swipeable elements like in the app tinder.
+A lab in VR and haptics at Liu.
 
 ## Usage
 
